@@ -18,6 +18,8 @@ Shot.containers = (updatable, drawable, shots)
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) 
 
+score = 0
+
 def main():
     pygame.init()
     pygame.display.set_caption("Asteroids")
@@ -44,8 +46,18 @@ def main():
                 if asteroid.check_collision(shot):
                     asteroid.split()
                     shot.kill()
+                    global score
+                    if asteroid.radius > 30:
+                        score += 10
+                    elif asteroid.radius > 20:
+                        score += 25
+                    else:
+                        score += 50
         for thing in drawable:
             thing.draw(screen)  # Draw the player on the screen
+        font = pygame.font.SysFont(None, 36)
+        score_surface = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_surface, (10, 10))
         pygame.display.flip()  # Update the display
     
     
