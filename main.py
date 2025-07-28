@@ -37,10 +37,7 @@ def main():
         dt = clock.tick(60) / 1000.0
         screen.fill((0, 0, 0))  # Fill the screen with black
         updatable.update(dt)
-        for asteroid in asteroids:
-            if player.check_collision(asteroid):
-                print("Game over!")
-                running = False
+        
         for asteroid in asteroids:
             for shot in shots:
                 if asteroid.check_collision(shot):
@@ -53,6 +50,13 @@ def main():
                         score += 25
                     else:
                         score += 50
+        for asteroid in asteroids:
+            if player.check_collision(asteroid):
+                final_score = score
+                print("Game over!")
+                print(f"Final Score: {final_score}")
+            
+                running = False
         for thing in drawable:
             thing.draw(screen)  # Draw the player on the screen
         font = pygame.font.SysFont(None, 36)
