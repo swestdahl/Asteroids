@@ -18,9 +18,21 @@ class Player(CircleShape):
         c = self.position - forward * self.radius + right
         return [a, b, c]    
     def draw(self, screen, invincible=False):
-        color = (255, 255, 255) if not invincible else (100, 100, 100)
+    # Draw shield first (under the ship)
+        if invincible:
+            pygame.draw.circle(
+                screen,
+                (0, 150, 255),  # Blue shield color
+                (int(self.position.x), int(self.position.y)),
+                int(self.radius * 1.5),
+                2  # Thin outline
+            )
+
+        # Always draw the ship in white
         points = self.triangle()
-        pygame.draw.polygon(screen, color, points, 2)
+        pygame.draw.polygon(screen, (255, 255, 255), points, 2)
+
+
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
         self.rotation %= 360

@@ -80,8 +80,7 @@ def main():
                         respawn_timer = RESPAWN_INVINCIBILITY
                         break
 
-        for thing in drawable:
-            thing.draw(screen)  # Draw the player on the screen
+         # Draw the player on the screen
         font = pygame.font.SysFont(None, 36)
         score_surface = font.render(f"Score: {score}", True, (255, 255, 255))
         screen.blit(score_surface, (10, 10))
