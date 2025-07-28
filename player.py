@@ -17,9 +17,10 @@ class Player(CircleShape):
         b = self.position - forward * self.radius - right
         c = self.position - forward * self.radius + right
         return [a, b, c]    
-    def draw(self, screen):
+    def draw(self, screen, invincible=False):
+        color = (255, 255, 255) if not invincible else (100, 100, 100)
         points = self.triangle()
-        pygame.draw.polygon(screen, "white", points, 2)
+        pygame.draw.polygon(screen, color, points, 2)
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
         self.rotation %= 360
