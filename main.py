@@ -30,7 +30,7 @@ def main():
     score = 0
     lives = 3
     respawn_timer = 0  # Time left for invincibility
-    RESPAWN_INVINCIBILITY = 2.0  # seconds
+    
     player = Player(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
     AsteroidField()
     running = True
